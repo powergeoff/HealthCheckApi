@@ -10,6 +10,7 @@ app.MapGet("/toggleHealth", () => {
 } );
 
 app.MapGet("/isHealthy", () => {
+    Console.WriteLine("/isHealthy invoked. Variable = " + isHealthy);
     return isHealthy ? StatusCodes.Status200OK : StatusCodes.Status400BadRequest;
 });
 
