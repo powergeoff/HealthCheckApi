@@ -5,6 +5,7 @@ bool isHealthy = true;
 app.MapGet("/", () => "Hello World!");
 
 app.MapGet("/toggleHealth", () => {
+    Console.WriteLine("/toggleHealth invoked. Variable = " + isHealthy);
     isHealthy = !isHealthy;
     return isHealthy;
 } );
