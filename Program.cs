@@ -13,4 +13,6 @@ app.MapGet("/isHealthy", () => {
     return isHealthy ? StatusCodes.Status200OK : StatusCodes.Status400BadRequest;
 });
 
+app.UseHttpsRedirection();
+
 app.Run();
