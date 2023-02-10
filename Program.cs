@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Diagnostics;
+
 var builder = WebApplication.CreateBuilder(args);
 var app = builder.Build();
 
@@ -14,12 +16,12 @@ app.MapGet("/toggleHealth", () => {
 
 
 app.MapGet("/isHealthy", () => {
-    var response = new HttpResponseMessage(); 
-    app.Logger.LogInformation("/isHealthy invoked. Variable = " + isHealthy);
-    return isHealthy ? new HttpResponseMessage(System.Net.HttpStatusCode.OK) : new HttpResponseMessage(System.Net.HttpStatusCode.BadRequest);
+    return isHealthy ? new HttpResponseMessage(System.Net.HttpStatusCode.OK) : throw new BadHttpRequestException("app not healthy", 500);
 });
 
 //app.UseHttpsRedirection();
 
 app.Logger.LogInformation("Starting the app");
 app.Run();
+
+
