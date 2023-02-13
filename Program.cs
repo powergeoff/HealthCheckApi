@@ -14,10 +14,11 @@ app.MapGet("/toggleHealth", () => {
     return isHealthy;
 } );
 
+app.MapGet("/badReq", () =>  System.Net.HttpStatusCode.BadRequest);
 
 app.MapGet("/isHealthy", () => {
     app.Logger.LogInformation(DateTime.Now.ToString() + " Health Check Invoked isHealthy = " + isHealthy);
-    return isHealthy ? new HttpResponseMessage(System.Net.HttpStatusCode.OK) : throw new BadHttpRequestException("app not healthy", 500);
+    return isHealthy ? new HttpResponseMessage(System.Net.HttpStatusCode.OK) : new HttpResponseMessage(System.Net.HttpStatusCode.InternalServerError);
 });
 
 //app.UseHttpsRedirection();
